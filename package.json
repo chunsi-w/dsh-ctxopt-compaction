@@ -1,0 +1,73 @@
+{
+  "name": "dsh-ctxopt-compaction",
+  "version": "0.0.1",
+  "description": "Bounded context compaction, session-scoped summary reuse, explicit memory controls, and diagnostic-preserving tool pruning for DeepSeek Harness.",
+  "type": "module",
+  "main": "src/engine.js",
+  "exports": {
+    ".": "./src/engine.js",
+    "./engine": "./src/engine.js",
+    "./pruner": "./src/pruner.js",
+    "./text-utils": "./src/text-utils.js",
+    "./package.json": "./package.json",
+    "./tool-result-pruner": "./src/pruner.js"
+  },
+  "files": [
+    "src/",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "*",
+    "@deepseek-ai/dsh-compaction-basic": "*",
+    "@deepseek-ai/dsh-compaction-tool-result-pruner": "*",
+    "@deepseek-ai/dsh-llm": "*",
+    "@deepseek-ai/dsh-session": "*",
+    "@deepseek-ai/schemastery": "*"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "context-compaction",
+    "prompt-cache",
+    "memory"
+  ],
+  "license": "MIT",
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-compaction-basic": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-compaction-tool-result-pruner": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-llm": {
+      "optional": true
+    },
+    "@deepseek-ai/dsh-session": {
+      "optional": true
+    },
+    "@deepseek-ai/schemastery": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chunsi-w/dsh-ctxopt-compaction.git"
+  },
+  "homepage": "https://github.com/chunsi-w/dsh-ctxopt-compaction#readme",
+  "bugs": {
+    "url": "https://github.com/chunsi-w/dsh-ctxopt-compaction/issues"
+  }
+}

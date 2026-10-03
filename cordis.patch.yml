@@ -1,0 +1,34 @@
+# dsh-ctxopt-compaction bundle patch（语义依 dsh-app-boot applyEntryPatches 源码验证）。
+# insert 纯增行：携带新 id + name 指向包内导出，追加到 loader 配置树顶层；
+# 非 insert 行仅按 id 覆盖字段（name 不符则整行跳过并告警）。
+# profile 层要调整插件行为：`- id: ctxopt-compaction`（或 ctxopt-tool-result-pruner）
+# + config 全量覆写即可（后来层胜出）。
+
+- insert:
+  # —— ctxopt 压缩引擎（接管自动压缩：pressure/overflow 全自动链路）——
+  - id: ctxopt-compaction
+    name: dsh-ctxopt-compaction/engine
+    config:
+      # 官方 thresholdRatio(0.8)/headroomTokens(65536) 不在此覆写，由宿主缺省接管；
+      # 小窗口模型请在 profile 层加同名 id 行提供 headroomTokens 等覆写（见 README）。
+      anchorValidation: true
+      memoryBlock: true
+      reminders: true
+      degenerateGate: true
+      # economics.enabled 默认 false = 宿主官方阈值语义原样生效；
+      # 置 true 后 pressure 压缩走 SoL-Pi 经济门（先免费裁剪、再算 breakeven/horizon）。
+  # —— ctxopt 工具结果智能诊断裁剪（接管 tool-result-pruner 缝合点）——
+  - id: ctxopt-tool-result-pruner
+    name: dsh-ctxopt-compaction/tool-result-pruner
+    config:
+      thresholdChars: 8192
+      headChars: 2048
+      tailChars: 2048
+      digestChars: 1536
+      smartDiagnostic: true
+
+# —— 宿主官方默认行：禁用（防止双引擎/双裁剪器同时挂载）——
+- id: compaction-basic
+  disabled: true
+- id: tool-result-pruner
+  disabled: true

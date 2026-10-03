@@ -1,0 +1,13 @@
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+/runs/
+/artifacts/
+/coverage/
+*.tgz
+*.log
+.DS_Store
