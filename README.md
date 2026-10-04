@@ -1,5 +1,7 @@
 # dsh-ctxopt-compaction
 
+<img src="pic/icon.png" alt="dsh-ctxopt-compaction" width="160">
+
 DeepSeek Harness 的上下文压缩插件，当前版本 **0.0.1**。在宿主原有压缩流程上增加收益判断、有界摘要缓存、显式记忆控制，以及保留诊断信息的工具输出裁剪。
 
 适合长对话、代码排查和大量工具日志场景。压缩仍由模型生成摘要，不能保证所有历史信息都被保留。
@@ -214,6 +216,8 @@ dsh-ctxopt-compaction/
 │   ├── memory.js       # 显式记忆与待办状态
 │   ├── pruner.js       # 工具输出裁剪器
 │   └── text-utils.js   # 文本处理与诊断提取
+├── pic/
+│   └── icon.png        # README 图标
 ├── cordis.patch.yml    # headless bundle 配置
 ├── package.json
 ├── .gitignore
